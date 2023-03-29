@@ -1,4 +1,5 @@
 fav_colour: str = input("Enter your favourite colour:")
+
 match fav_colour.lower():
     case "black":
         print("Adi has a black shirt")
