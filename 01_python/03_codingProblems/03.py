@@ -14,11 +14,15 @@
 # Solution:
 
 number = int(input("Number: "))
+output: dict = {}
+
+for i in range(1, number + 1):
+    output[i] = i * i
 
 
+# or
 def square_dict(number) -> dict:
     x = 1
-    output: dict = {}
     while x <= number:
         # output.update({x: x * x}) or
         output[x] = x * x
@@ -26,4 +30,4 @@ def square_dict(number) -> dict:
     return output
 
 
-print(square_dict(number))
+print(output)

@@ -41,6 +41,11 @@ class Person:
         return f"{self.fname} {self.lname}"
 
 
+p1 = Person("Pam", "Bleesley")
+print(p1)
+print(p1.fullname)  # can call like this
+
+
 @final
 class Staff(Person):
     def __init__(self, fname: str, lname: str, staff_id: int, role: Role) -> None:
@@ -61,6 +66,7 @@ class Staff(Person):
                 self.__salary = 25
 
     def __str__(self) -> str:
+        # can add property of parent class without calling it. ie: fullname
         return f"Staff => Name: {self.fullname} ID: {self.staff_id}"
 
     @classmethod
@@ -96,7 +102,7 @@ class Staff(Person):
 
 
 Staff.describe()
-p1 = Person("Peter", "Griffin")
+p2 = Person("Peter", "Griffin")
 s1 = Staff("Chris", "Griffin", 7890, Role.ASSOCIATE)
 s2 = Staff.new(p1, 7654, Role.MANAGER)
 
