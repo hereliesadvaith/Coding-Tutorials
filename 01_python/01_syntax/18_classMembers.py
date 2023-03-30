@@ -7,8 +7,7 @@ variable are only limited to that particular instance.
 
 
 class Box:
-
-    # Class Variable/Member
+    # Class Variables/Members
     box_type = "Packaging Carton"
     color = "Brown"
 

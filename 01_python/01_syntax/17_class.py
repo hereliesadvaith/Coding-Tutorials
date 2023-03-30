@@ -31,7 +31,6 @@ that transforms your data.
 
 
 class Someclass:
-
     pass
 
 
@@ -53,7 +52,7 @@ class Person:
         print(f"{self.fn} says hello")
 
 
-# instance of class / type 'Person
+# instance or object of class Person
 
 p1 = Person("Peter", "Griffin")
 p2 = Person("Lois", "Griffin")

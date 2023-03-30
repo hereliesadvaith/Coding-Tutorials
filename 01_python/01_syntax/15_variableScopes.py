@@ -14,6 +14,7 @@ def print_num():
 
 
 def print_nu():
+    # to change num globally import global num and then change it
     global num
     num = 30
     print(num)

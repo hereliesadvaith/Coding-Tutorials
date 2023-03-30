@@ -2,7 +2,6 @@
 # They can be passed to other functions and functions can also return functions
 # We can send function to data
 
-
 from typing import Callable
 
 # Function accepting a function
@@ -37,7 +36,6 @@ def add_by_5(num: int) -> Callable[[], int]:
 sum = add_by_5(6)
 
 print(sum())
-
 
 # Lambda functions:
 
