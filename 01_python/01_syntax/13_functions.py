@@ -1,11 +1,12 @@
-def greeter2(y: str) -> None:
-    print(f"Zola {y}")
+def greeter(x: str) -> None:
+    print(f"Zola {x}")
 
 
 y = input("Enter your name :")
-greeter2(y)
+greeter(y)
 
 
+# function for caluculating Body Mass Index
 def bmi(w: int, h: float) -> float:
     return w / (h * h)
 
@@ -13,9 +14,10 @@ def bmi(w: int, h: float) -> float:
 a = int(input("Enter your weight in KG :"))
 b = float(input("Enter your height in m :"))
 c = bmi(a, b)
+
 if c < 18.5:
-    print("You are underweight")
+    print(f"{y} is underweight")
 elif c < 25:
-    print("You are normal weight")
+    print(f"{y} is normal weight")
 else:
-    print("You are overweight")
+    print(f"{y} is overweight")

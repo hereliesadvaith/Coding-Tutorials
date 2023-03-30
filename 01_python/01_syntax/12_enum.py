@@ -7,9 +7,11 @@ class Pizzasize(Enum):
     LARGE = 12
 
 
+# to get values
 print(f"One order for {Pizzasize.SMALL.value} inch pizza")
 
 
+# for assigning values with auto increment
 class Role(Enum):
     ASSOCIATE = auto()
     SUPERVISOR = auto()

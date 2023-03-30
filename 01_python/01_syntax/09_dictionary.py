@@ -23,5 +23,5 @@ print(marks["Maths"])
 print(marks.get("Science"))
 print(marks.get("Java"))
 
-# to del a pair
+# to delete a pair
 del marks["Science"]

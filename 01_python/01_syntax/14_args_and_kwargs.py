@@ -49,8 +49,8 @@ unknown_product(name="pizza", price=3.99, topping="olives", extra_cheese=True)
 
 def invoice(product: str, *args, **kwargs):
     print(product)
-    print(args)
-    print(kwargs)
+    print(args)  # packed as tuple
+    print(kwargs)  # packed as dictionay
 
 
 invoice(
