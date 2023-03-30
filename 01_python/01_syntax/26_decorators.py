@@ -23,7 +23,6 @@ from typing import final
 
 
 class Role(Enum):
-
     ASSOCIATE = auto()
     SUPERVISOR = auto()
     MANAGER = auto()
@@ -37,7 +36,7 @@ class Person:
     def __str__(self) -> str:
         return f"Person: {self.fname} {self.lname}"
 
-    @property
+    @property  # act like self.fname
     def fullname(self) -> str:
         return f"{self.fname} {self.lname}"
 
@@ -54,6 +53,7 @@ class Staff(Person):
         # Dynamically create and assign instance values
         match role:
             case Role.ASSOCIATE:
+                # Private member
                 self.__salary: float = 15
             case Role.SUPERVISOR:
                 self.__salary = 20

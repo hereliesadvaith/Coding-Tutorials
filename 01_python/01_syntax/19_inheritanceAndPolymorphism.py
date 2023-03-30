@@ -32,7 +32,7 @@ class Animal:
 
 class Dog(Animal):
     def __init__(self, name: str, age: int, num_legs: int, breed: str) -> None:
-        # Take the common features and pass to the parent(super) class
+        # Take the common features and pass to the parent(super) class -- inheritance
         super().__init__(name, age, num_legs)
         # Define custom instance variables
         self.breed = breed
@@ -42,7 +42,6 @@ class Dog(Animal):
         return f"{self.type}: {self.name}, Breed: {self.breed}"
 
     # We alter the talk method and make it say woff adding polymorphic behavior
-
     def talk(self) -> None:
         print(f"{self.name} says wooof")
 
@@ -59,8 +58,6 @@ d1 = Dog("Brian", 8, 4, "Dobberman")
 print(d1)
 d1.talk()
 d1.sniff("ball")
-
-# .................................................................
 
 
 class Cat(Animal):
@@ -82,6 +79,5 @@ c1 = Cat("Snowbell", 4, 4, "Persian cat")
 print(c1)
 c1.talk()
 
-# ......................................................................
-
+# returns whether the object is an instance of class or of a subclass thereof.
 print(isinstance(d1, Animal))
