@@ -1,5 +1,11 @@
-# Write a program which will find all such numbers which are divisible by 7 but are not a multiple of 5,
-# between 2000 and 3200 (both included).
+# Question:
+# Write a program which will find all such numbers which are divisible by 7
+# but are not a multiple of 5, between 2000 and 3200 (both included).
+
+# Hints:
+# Consider use range(#begin, #end) method
+
+# Solution:
 
 numbers: list = []
 
