@@ -5,4 +5,7 @@ INSERT INTO customer(
 VALUES(
     'niharika', 's', 'nihu@gmail.com', 'algo world', 'muj', 'pinkcity', 'jp', 403, 999448855,
     '2000-02-07', 'F', CURRENT_TIMESTAMP
-);
+)
+
+SELECT * FROM public.customer
+ORDER BY id ASC;
