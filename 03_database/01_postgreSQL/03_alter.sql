@@ -15,8 +15,16 @@ ALTER TABLE sales_item
 RENAME COLUMN day_of_week TO weekday;
 
 -- to delete column
-ALTER TABLE sales_item DROP COLUMN day_of_week;
+ALTER TABLE sales_item DROP COLUMN weekday;
 
 --Renam Table
 ALTER TABLE transaction_type
 RENAME TO transaction;
+
+ALTER TABLE customer ALTER COLUMN zip TYPE INTEGER;
+
+ALTER TABLE sales_order ALTER COLUMN purchase_order_number TYPE BIGINT;
+
+ALTER TABLE sales_order RENAME COLUMN credit_card_exp_month TO credit_card_exp;
+
+ALTER TABLE sales_order ALTER COLUMN credit_card_exp TYPE VARCHAR(7);
