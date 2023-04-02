@@ -24,7 +24,7 @@ VALUES('Casusal');
 INSERT INTO product_type (name)
 VALUES('Athletic');
 
--- you dont have to mention the column name 
+-- you dont have to mention the column name but you should put values in order
 INSERT INTO product VALUES
     (1, 'Grandview', 'Allen Edmond', 'Styles to spare new even better'),
     (1,'Galaxy', 'Samsung', 'Next level innovation in your hands'),
