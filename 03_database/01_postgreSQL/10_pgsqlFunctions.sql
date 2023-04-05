@@ -174,40 +174,97 @@ END
 $body$
 LANGUAGE plpgsql
 
+CREATE OR REPLACE FUNCTION fn_for_test(max int)
+RETURNS int AS
+$body$
+DECLARE
+    tot_sum int DEFAULT 0;
+BEGIN
+    FOR i IN 1 .. max BY 2 -- range 1 to max step by 2
+--  FOR i IN REVERSE max .. 1 BY 2
+    LOOP
+        tot_sum := tot_sum + i;
+    END LOOP;
+    RETURN tot_sum;
+END
+$body$
+LANGUAGE plpgsql
 
+DO
+$body$
+DECLARE
+    rec record;
+BEGIN
+    FOR rec in 
+        SELECT first_name, last_name
+        FROM sales_person
+        LIMIT 5
+    LOOP
+        RAISE NOTICE '% %', rec.first_name, rec.last_name;
+    END LOOP;
+END
+$body$
+LANGUAGE plpgsql
 
+DO
+$body$
+DECLARE
+    arr1 int[] := array[1,2,3];
+    i int;
+BEGIN
+    FOREACH i IN ARRAY arr1
+    LOOP
+        RAISE NOTICE '%', i;
+    END LOOP; 
+END
+$body$
+LANGUAGE plpgsql
 
+DO
+$body$
+DECLARE
+    j int DEFAULT 1;
+    tot_sum int DEFAULT 0;
+BEGIN
+    WHILE j <= 10
+    LOOP
+        tot_sum := tot_sum + j;
+        j := j + 1;
+        RAISE NOTICE '%', tot_sum;
+    END LOOP; 
+END
+$body$
+LANGUAGE plpgsql
 
+-- odd numbers
+DO
+$body$
+DECLARE
+    i int DEFAULT 1;
+BEGIN
+    LOOP
+        i := i + 1
+        EXIT WHEN i > 10;
+        CONTINUE WHEN MOD(i, 2) = 0; -- modulus of i / 2
+        RAISE NOTICE 'Num : %', i;
+    END LOOP; 
+END
+$body$
+LANGUAGE plpgsql
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+CREATE OR REPLACE FUNCTION fn_get_supplier_value(the_supplier varchar)
+RETURNS varchar AS
+$body$
+DECLARE
+    supplier_name varchar;
+    price_sum numeric;
+BEGIN
+    SELECT product.supplier, SUM(item.price)
+    INTO supplier_name, price_sum
+    FROM product, item
+    WHERE product.supplier = the_supplier
+    GROUP BY product.supplier;
+    RETURN CONCAT(supplier_name, 'Inventory Value : $', price_sum);
+END
+$body$
+LANGUAGE plpgsql
