@@ -10,6 +10,7 @@
 
 class InOutString:
     def __init__(self) -> None:
+        # variable
         self.string = None
 
     def getString(self):

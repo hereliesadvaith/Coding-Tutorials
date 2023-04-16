@@ -14,7 +14,6 @@
 # Solution:
 
 serial = int(input("How many numbers do you wanna add:"))
-
 num_list: list = []
 
 for i in range(0, serial):
