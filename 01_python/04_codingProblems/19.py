@@ -22,11 +22,12 @@
 # Solution:
 from operator import itemgetter
 
-l = []
+result = []
 while True:
-    s = input()
-    if not s:
+    int_str = input("Enter:")
+    if int_str:
+        data_tuple = tuple(int_str.split(","))
+        result.append(data_tuple)
+    else:
         break
-    l.append(tuple(s.split(",")))
-
-print(sorted(l, key=itemgetter(0, 1, 2)))
+print(sorted(result, key=itemgetter(0, 1, 2)))
