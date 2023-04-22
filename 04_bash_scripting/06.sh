@@ -7,9 +7,11 @@ showupTime(){
 	local since=$(uptime -s)
 	cat << EOF
 -----------
+Hello $1
 This machine has been up for ${up}
 It has been running since ${since}
 -----------
 EOF
+# functions can also take positional arguments
 }
-showupTime
+showupTime Advaith
