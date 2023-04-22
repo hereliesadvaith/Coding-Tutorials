@@ -2,8 +2,9 @@
 # functions
 
 showupTime(){
-	up=$(uptime -p | cut -c4-)
-	since=$(uptime -s)
+	# making it a local variable
+	local up=$(uptime -p | cut -c4-)
+	local since=$(uptime -s)
 	cat << EOF
 -----------
 This machine has been up for ${up}
