@@ -25,3 +25,17 @@ print(marks.get("Java"))
 
 # to delete a pair
 del marks["Science"]
+
+my_dict = {"apple": 5, "banana": 2, "orange": 7}
+
+# using get() function to retrieve value of 'apple' key
+apple_count = my_dict.get("apple")
+print(apple_count)  # output: 5
+
+# using get() function to retrieve value of 'grape' key (which doesn't exist)
+grape_count = my_dict.get("grape")
+print(grape_count)  # output: None
+
+# using get() function to retrieve value of 'grape' key with default value of 0
+grape_count = my_dict.get("grape", 0)
+print(grape_count)  # output: 0
