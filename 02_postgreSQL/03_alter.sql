@@ -28,3 +28,6 @@ ALTER TABLE sales_order ALTER COLUMN purchase_order_number TYPE BIGINT;
 ALTER TABLE sales_order RENAME COLUMN credit_card_exp_month TO credit_card_exp;
 
 ALTER TABLE sales_order ALTER COLUMN credit_card_exp TYPE VARCHAR(7);
+
+-- to restart id sequence
+ALTER SEQUENCE tablename_id_seq RESTART WITH 1;
