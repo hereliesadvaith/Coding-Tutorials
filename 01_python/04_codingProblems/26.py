@@ -16,6 +16,8 @@ def printDict():
     for i in range(1, 21):
         d[i] = i**2
     print(d)
+    # for (k, v) in d.items():
+    # print(k, v)
 
 
 printDict()
