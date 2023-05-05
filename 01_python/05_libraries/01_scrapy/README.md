@@ -21,4 +21,6 @@ Scrapy is a popular choice for web scraping and data mining projects, and is wid
 ### Commands:
 ```bash
 scrapy startproject project_name
+## cd into spiders folder and
+scrapy genspider spider_name www.url.com
 ```
