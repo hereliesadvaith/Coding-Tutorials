@@ -19,5 +19,6 @@ Scrapy is a popular choice for web scraping and data mining projects, and is wid
 
 
 ### Commands:
-
-1. scrapy startproject project_name
+```bash
+scrapy startproject project_name
+```
