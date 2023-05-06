@@ -23,4 +23,6 @@ Scrapy is a popular choice for web scraping and data mining projects, and is wid
 scrapy startproject project_name
 ## cd into spiders folder and
 scrapy genspider spider_name www.url.com
+## to use scrapy shell
+scrapy shell
 ```
