@@ -25,4 +25,6 @@ scrapy startproject project_name
 scrapy genspider spider_name www.url.com
 ## to use scrapy shell
 scrapy shell
+## to use scrapy spider
+scrapy crawl spider_name
 ```
