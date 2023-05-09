@@ -1,5 +1,6 @@
 # crawl through single book pages to get the description of books
 import scrapy
+from bookscraper.items import BookItem
 
 
 class DescriptionSpider(scrapy.Spider):
@@ -23,13 +24,16 @@ class DescriptionSpider(scrapy.Spider):
 
     def descrptionParse(self, response):
         table_rows = response.css("tabel tr")
-        yield {
-            "name": response.css("h1 ::text").get(),
-            "description": response.css(
+        bookitem = BookItem()
+
+        bookitem["name"] = (response.css("h1 ::text").get(),)
+        bookitem["description"] = (
+            response.css(
                 # if the pargraph is directly under the divsion or use p:nth-of-type(2)
                 # or x path
                 # response.xpath("//div[@id='product_description]/following-siblilng::p/text()").get()
                 "article.product_page > p:first-of-type::text"
             ).get(),
-            "availability": table_rows[5].css("td ::text").get(),
-        }
+        )
+        bookitem["availability"] = (table_rows[5].css("td ::text").get(),)
+        yield bookitem
