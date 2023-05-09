@@ -27,4 +27,6 @@ scrapy genspider spider_name www.url.com
 scrapy shell
 ## to use scrapy spider
 scrapy crawl spider_name
+## to save file in csv, json etc formats
+scrapy crawl spider_name -O filename.csv
 ```
