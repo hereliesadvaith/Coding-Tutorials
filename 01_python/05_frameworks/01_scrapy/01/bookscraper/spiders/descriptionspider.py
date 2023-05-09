@@ -23,11 +23,11 @@ class DescriptionSpider(scrapy.Spider):
         yield response.follow(next_page_url, callback=self.parse)
 
     def descrptionParse(self, response):
-        table_rows = response.css("tabel tr")
-        bookitem = BookItem()
+        table_rows = response.css("table tr")
+        book_item = BookItem()
 
-        bookitem["name"] = (response.css("h1 ::text").get(),)
-        bookitem["description"] = (
+        book_item["name"] = (response.css("h1 ::text").get(),)
+        book_item["description"] = (
             response.css(
                 # if the pargraph is directly under the divsion or use p:nth-of-type(2)
                 # or x path
@@ -35,5 +35,5 @@ class DescriptionSpider(scrapy.Spider):
                 "article.product_page > p:first-of-type::text"
             ).get(),
         )
-        bookitem["availability"] = (table_rows[5].css("td ::text").get(),)
-        yield bookitem
+        book_item["availability"] = (table_rows[5].css("td ::text").get(),)
+        yield book_item

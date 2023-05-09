@@ -12,9 +12,9 @@ class BookscraperItem(scrapy.Item):
     pass
 
 
-def serialize_description(description):
-    # you can clean the data
-    pass
+# def serialize_description(description):
+#     # you can clean the data
+#     pass
 
 
 class BookItem(scrapy.Item):
