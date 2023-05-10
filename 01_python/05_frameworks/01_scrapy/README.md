@@ -29,4 +29,6 @@ scrapy shell
 scrapy crawl spider_name
 ## to save file in csv, json etc formats
 scrapy crawl spider_name -O filename.csv
+## to append data to file
+scrapy crawl spider_name -o filename.json
 ```
