@@ -1,0 +1,49 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    height: 900px;
+    background-color: cornflowerblue;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.converter {
+    height: 700px;
+    width: 700px;
+    border-radius: 5px;
+    
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: aliceblue;
+    font-family: Quantico;
+}
+
+.currency {
+    margin-left: 100px;
+    margin-right: 200px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    border: solid 3px;
+    height: 40px;
+}
+
+.amount {
+    margin-bottom: 30px;
+    border-radius: 5px;
+    border: solid 3px;
+    height: 40px;
+}
+
+p#valueOfOne {
+    color: floralwhite;
+    margin-left: 268px;
+    margin-bottom: 31px;
+    font-weight: bold;
+}
