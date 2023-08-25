@@ -7,12 +7,12 @@ const options = {
     }
 };
 
-$("document").ready(function () {
+$(function () {
     listQuotes()
-    $(".currency").change(function () {
+    $(".currency").on("change", function () {
         valueOfOne()
     });
-    $("#amount1").change(function () {
+    $("#amount1").on("change", function () {
         if (currency1 && currency2 && currency1 !== currency2) {
             var amount1 = $("#amount1").val()
             if (amount1) {
@@ -26,7 +26,7 @@ $("document").ready(function () {
             $("#valueOfOne").text("Please select currencies")
         }
     })
-    $("#amount2").change(function () {
+    $("#amount2").on("change", function () {
         if (currency1 && currency2 && currency1 !== currency2) {
             var amount2 = $("#amount2").val()
             if (amount2) {

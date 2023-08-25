@@ -1,5 +1,5 @@
-$("document").ready(function () {
-    $("#button").click(function () {
+$(function () {
+    $("#button").on("click", function () {
         var name = $("#name").val()
         var address = $("#address").val()
         var email = $("#email").val()
@@ -42,7 +42,7 @@ $("document").ready(function () {
             }
         };
     });
-    $("#eye").click(function () {
+    $("#eye").on("click", function () {
         var classEye = $("#eye").attr("class")
         if (classEye === "pswd") {
             $("#password").attr("type", "text")
@@ -54,7 +54,7 @@ $("document").ready(function () {
             $("#eye i").attr("class", "fa fa-eye")
         }
     });
-    $("#eye2").click(function () {
+    $("#eye2").on("click", function () {
         var classEye = $("#eye2").attr("class")
         if (classEye === "pswd") {
             $("#password2").attr("type", "text")
@@ -66,13 +66,13 @@ $("document").ready(function () {
             $("#eye2 i").attr("class", "fa fa-eye")
         }
     });
-    $("#dob").change(function () {
+    $("#dob").on("change", function () {
         var dob = $("#dob").val()
         var age = getAge(dob)
         $("#age").text("Age: " + age)
     });
 
-    $("#name").change(function () {
+    $("#name").on("change", function () {
         var name = $("#name").val()
         if (containsNumbers(name) || containsSpecialChars(name)) {
             $("#namep").text("Invalid name")
@@ -84,7 +84,7 @@ $("document").ready(function () {
             }
         }
     })
-    $("#email").change(function () {
+    $("#email").on("change", function () {
         var email = $("#email").val()
         if (emailCheck(email)) {
             $("#emailp").text("")
@@ -92,11 +92,11 @@ $("document").ready(function () {
             $("#emailp").text("Invalid email address")
         }
     })
-    $("#password").change(function () {
+    $("#password").on("change", function () {
         var password = $("#password").val()
         passwordCheck(password)
     })
-    $("#password2").change(function () {
+    $("#password2").on("change", function () {
         var password = $("#password").val()
         var password2 = $("#password2").val()
         if (password === password2) {
