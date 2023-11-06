@@ -20,7 +20,10 @@ Scrapy is a popular choice for web scraping and data mining projects, and is wid
 ## Configuration
 
 Scrapy installation
-
 ```bash
 pip install scrapy
+```
+You can start the project 'bookscraper' by command
+```bash
+scrapy startproject bookscraper
 ```
