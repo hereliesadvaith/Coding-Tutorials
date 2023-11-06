@@ -27,3 +27,7 @@ You can start the project 'bookscraper' by command
 ```bash
 scrapy startproject bookscraper
 ```
+To generate spider with name 'bookspider' to scrape the website with url 'books.toscrape.com' navigate to spiders folder and use command
+```bash
+scrapy genspider bookspider books.toscrape.com
+```
