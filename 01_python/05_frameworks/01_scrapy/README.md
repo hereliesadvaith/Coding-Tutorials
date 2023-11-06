@@ -17,18 +17,10 @@ Some of the key features of Scrapy include:
 
 Scrapy is a popular choice for web scraping and data mining projects, and is widely used in industries such as e-commerce, finance, and media. It is a powerful and versatile tool that can help developers extract valuable insights from large amounts of data available on the web.
 
+## Configuration
 
-### Commands:
+Scrapy installation
+
 ```bash
-scrapy startproject project_name
-## cd into spiders folder and
-scrapy genspider spider_name www.url.com
-## to use scrapy shell
-scrapy shell
-## to use scrapy spider
-scrapy crawl spider_name
-## to save file in csv, json etc formats
-scrapy crawl spider_name -O filename.csv
-## to append data to file
-scrapy crawl spider_name -o filename.json
+pip install scrapy
 ```
