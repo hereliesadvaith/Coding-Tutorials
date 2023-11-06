@@ -31,3 +31,16 @@ To generate spider with name 'bookspider' to scrape the website with url 'books.
 ```bash
 scrapy genspider bookspider books.toscrape.com
 ```
+We can use the shell feature of scrapy to find the css elements of the web page we want to scrape. Go to 'scrapy.cfg' and add your preferred shell inside configuration. Now we can run scrapy shell by command
+```bash
+scrapy shell
+```
+Now we can see the available scrapy objects inside the shell. We can use 'fetch' command to fetch the data from a url.
+```bash
+fetch('https://books.toscrape.com')
+```
+This command will put all the html page details inside a variable called 'response'. So we can get the details of element. For example if we want to get the elements with tag 'article' and class 'product_pod' we can use the command
+```bash
+response.css('article.product_pod')
+```
+It will gieve a list of elements with tag 'article' and class 'product_pod' in that page.
