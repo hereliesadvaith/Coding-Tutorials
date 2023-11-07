@@ -43,4 +43,7 @@ This command will put all the html page details inside a variable called 'respon
 ```bash
 response.css('article.product_pod')
 ```
-It will gieve a list of elements with tag 'article' and class 'product_pod' in that page.
+It will gieve a list of elements with tag 'article' and class 'product_pod' in that page. After confirming the css of the data we want to scrape exit scrapy shell and navigate to 'bookspider' folder to run our bookspider spider using the command
+```bash
+scrapy crawl bookspider
+```
