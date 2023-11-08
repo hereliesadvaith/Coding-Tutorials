@@ -1,6 +1,10 @@
 import scrapy
 
 
+def new_print(*args):
+    print("\033[33m" + args[-1] + "\033[0m")
+
+
 class BookspiderSpider(scrapy.Spider):
     name = "bookspider"
     allowed_domains = ["books.toscrape.com"]
@@ -9,13 +13,16 @@ class BookspiderSpider(scrapy.Spider):
     def parse(self, response):
         # function will get called once we get the response.
         books = response.css("article.product_pod")
+        # Go to each book's page to retrieve data
         for book in books:
-            yield {
-                "name": book.css("h3 a").attrib["title"],
-                "price": book.css(".product_price .price_color::text").get(),
-                "url": book.css("h3 a").attrib["href"]
-            }
-        # to scrape next_page
+            relative_url = book.css("h3 a::attr(href)").get()
+            if relative_url:
+                if "catalogue" in relative_url:
+                    book_url = "https://books.toscrape.com/" + relative_url
+                else:
+                    book_url = "https://books.toscrape.com/catalogue/" + relative_url
+                yield response.follow(book_url, callback=self.parse_book_page)
+        # Then going to next page
         next_page = response.css("li.next a::attr(href)").get()
         if next_page:
             if "catalogue" in next_page:
@@ -24,3 +31,11 @@ class BookspiderSpider(scrapy.Spider):
             else:
                 next_page_url = "https://books.toscrape.com/catalogue/" + next_page
                 yield response.follow(next_page_url, callback=self.parse)
+
+    def parse_book_page(self, response):
+        yield {
+            "name": response.css(".product_main h1 ::text").get(),
+            "category": response.xpath("//ul[@class='breadcrumb']/li")[2].css("a::text").get(),
+            "price": response.xpath("//table/tr")[3].css("td ::text").get()[1:],
+            "availablily": response.xpath("//table/tr")[5].css("td ::text").get().split('(')[1].split(' ')[0],
+        }
