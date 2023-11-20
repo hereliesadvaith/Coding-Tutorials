@@ -1,8 +1,5 @@
 import scrapy
-
-
-def new_print(*args):
-    print("\033[33m" + args[-1] + "\033[0m")
+from bookscraper.items import BookscraperItem
 
 
 class BookspiderSpider(scrapy.Spider):
@@ -33,9 +30,14 @@ class BookspiderSpider(scrapy.Spider):
                 yield response.follow(next_page_url, callback=self.parse)
 
     def parse_book_page(self, response):
-        yield {
-            "name": response.css(".product_main h1 ::text").get(),
-            "category": response.xpath("//ul[@class='breadcrumb']/li")[2].css("a::text").get(),
-            "price": response.xpath("//table/tr")[3].css("td ::text").get()[1:],
-            "availablily": response.xpath("//table/tr")[5].css("td ::text").get().split('(')[1].split(' ')[0],
-        }
+        bookitem = BookscraperItem()
+
+        bookitem["name"] = response.css(".product_main h1 ::text").get()
+        bookitem["category"] = response.xpath(
+            "//ul[@class='breadcrumb']/li")[2].css("a::text").get()
+        bookitem["price"] = response.xpath(
+            "//table/tr")[3].css("td ::text").get()[1:]
+        bookitem["availability"] = response.xpath(
+            "//table/tr")[5].css("td ::text").get().split('(')[1].split(' ')[0]
+
+        yield bookitem
