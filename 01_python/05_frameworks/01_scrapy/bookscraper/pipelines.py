@@ -6,6 +6,7 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
+import psycopg2
 
 
 class BookscraperPipeline:
@@ -28,3 +29,51 @@ class BookscraperPipeline:
         adapter["availability"] = int(adapter["availability"])
 
         return item
+
+
+class SaveToDB:
+    """
+    To save to PostgreSQL database
+    """
+
+    def __init__(self):
+        self.conn = psycopg2.connect(
+            host="localhost", dbname="mydb", user="postgres", password="db4136", port=5432
+        )
+        self.cur = self.conn.cursor()
+        self.cur.execute("""
+        CREATE TABLE IF NOT EXISTS books (
+            id SERIAL PRIMARY KEY,
+            name VARCHAR(255),
+            category VARCHAR(255),
+            price FLOAT,
+            availability INT
+        )
+        """)
+
+    def process_item(self, item, spider):
+        """
+        To save data
+        """
+        self.cur.execute("""
+        INSERT INTO books (
+            name, category, price, availability
+        ) VALUES (
+            %s, %s, %s, %s
+        )
+        """, (
+            item["name"],
+            item["category"],
+            item["price"],
+            item["availability"]
+        )
+        )
+        self.conn.commit()
+        return item
+
+    def close_spider(self, spider):
+        """
+        Close connection at end.
+        """
+        self.cur.close()
+        self.conn.close()

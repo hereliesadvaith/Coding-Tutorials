@@ -47,7 +47,11 @@ It will gieve a list of elements with tag 'article' and class 'product_pod' in t
 ```bash
 scrapy crawl bookspider
 ```
-You can save the scraped data to csv by command
+You can save the scraped data to csv by command.
 ```bash
 scrapy crawl bookspider -O bookdata.csv
+```
+If there is already a file named 'bookdata.csv' it will get removed. To add data to existing file we use command
+```bash
+scrapy crawl bookspider -o bookdata.csv
 ```
