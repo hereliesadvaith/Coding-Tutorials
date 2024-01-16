@@ -16,7 +16,8 @@ class Developer extends Person {
         this.role = role
     }
     greet() {
-        console.log("Hi " + this.role + " " + this.name)
+        super.greet()
+        console.log("Role: " + this.role)
     }
 }
 
