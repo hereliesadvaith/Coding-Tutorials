@@ -9,3 +9,9 @@ mysql -u root -p
 ```sql
 SHOW DATABASES;
 ```
+
+#### Selecting Database
+```sql
+USE mydatabase;
+```
+

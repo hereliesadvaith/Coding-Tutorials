@@ -9,3 +9,7 @@ sudo -u postgres psql
 ```sql
 \l
 ```
+
+#### Selecting Database
+\c mydatabase;
+
