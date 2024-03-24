@@ -11,5 +11,6 @@ sudo -u postgres psql
 ```
 
 #### Selecting Database
+```sql
 \c mydatabase;
-
+```

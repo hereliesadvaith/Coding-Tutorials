@@ -28,3 +28,13 @@ We can also conditionally create database if it doesn't already exist using:
 ```sql
 CREATE DATABASE IF NOT EXISTS mydatabase;
 ```
+
+### Deleting Database
+To delete database use:
+```sql
+DROP DATABASE mydatabase;
+```
+To delete only the contents of a database use:
+```sql
+DELETE DATABASE mydatabase;
+```

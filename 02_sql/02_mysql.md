@@ -14,4 +14,3 @@ SHOW DATABASES;
 ```sql
 USE mydatabase;
 ```
-
