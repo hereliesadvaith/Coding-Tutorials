@@ -38,3 +38,28 @@ To delete only the contents of a database use:
 ```sql
 DELETE DATABASE mydatabase;
 ```
+
+### Creating Table
+We can create table using:
+```sql
+CREATE TABLE IF NOT EXISTS customer(
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    email VARCHAR(60) NOT NULL,
+    city VARCHAR(30) NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    birth_date DATE NULL,
+    sex CHAR(1) NOT NULL,
+    id SERIAL PRIMARY KEY
+);
+
+CREATE TABLE IF NOT EXISTS office(
+    officeCode VARCHAR(10) NOT NULL,
+    phone VARCHAR(50) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    postalCode VARCHAR(15) NOT NULL,
+    PRIMARY KEY (officeCode)
+);
+```
+A primary key uniquely identifies a row in a table. You cannot store NULL or duplicate values in a primary key column.

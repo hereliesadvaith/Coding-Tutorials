@@ -14,3 +14,8 @@ SHOW DATABASES;
 ```sql
 USE mydatabase;
 ```
+
+#### Table Description
+```sql
+DESCRIBE customer;
+```

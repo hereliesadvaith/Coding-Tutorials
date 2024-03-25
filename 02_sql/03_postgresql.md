@@ -14,3 +14,8 @@ sudo -u postgres psql
 ```sql
 \c mydatabase;
 ```
+
+#### Table Description
+```sql
+\d customer;
+```
