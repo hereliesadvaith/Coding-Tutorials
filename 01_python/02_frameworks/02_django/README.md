@@ -27,3 +27,15 @@ After creating the models for our project we need to add the migrations to datab
 python manage.py makemigrations
 python manage.py migrate
 ```
+
+Also we can specify migrations for specific apps.
+```bash
+python manage.py makemigrations api
+```
+
+After adding our model to admin.py. We need to create a super user to see it in admin dashboard.
+```bash
+python manage.py createsuperuser
+```
+
+Now go to url /admin/ to see admin dashboard and edit the model we registered to admin site.
