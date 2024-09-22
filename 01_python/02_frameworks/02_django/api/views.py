@@ -1,7 +1,6 @@
-"""
-Views for routes.
-"""
+# -*- coding: utf-8 -*-
 from django.http import JsonResponse
+from .models.product import Product
 
 
 def api_home(request):

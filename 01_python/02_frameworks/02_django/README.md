@@ -21,3 +21,9 @@ Now we can build an app to manage our API.
 ```bash
 python manage.py startapp api
 ```
+
+After creating the models for our project we need to add the migrations to database.
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```

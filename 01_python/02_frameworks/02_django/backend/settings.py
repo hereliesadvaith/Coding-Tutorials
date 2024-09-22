@@ -1,6 +1,4 @@
-"""
-Django settings for backend project.
-"""
+# -*- coding: utf-8 -*-
 from dotenv import load_dotenv
 import os
 
