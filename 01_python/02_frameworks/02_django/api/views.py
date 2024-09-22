@@ -1,3 +1,13 @@
-from django.shortcuts import render
+"""
+Views for routes.
+"""
+from django.http import JsonResponse
 
-# Create your views here.
+
+def api_home(request):
+    """
+    Return all the available endpoints.
+    """
+    return JsonResponse({
+        'message': 'Welcome'
+    })
