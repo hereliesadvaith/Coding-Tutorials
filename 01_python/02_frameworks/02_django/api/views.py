@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from .models.product import Product
+from .serializers.product_serializer import ProductSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -20,3 +21,14 @@ def api_home(request):
         'status': 'operational',
     }
     return Response(routes)
+
+@api_view(['GET'])
+def product(request):
+    """
+    Return products
+    """
+    records = Product.objects.all()
+    data = {}
+    if records:
+        data = ProductSerializer(records, many=True).data
+    return Response(data)

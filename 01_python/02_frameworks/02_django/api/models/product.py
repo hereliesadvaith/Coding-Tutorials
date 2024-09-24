@@ -8,3 +8,10 @@ class Product(models.Model):
     """
     name = models.CharField(max_length=120)
     price = models.DecimalField(max_digits=5, decimal_places=2, default=99.99)
+
+    @property
+    def max_discount_price(self):
+        """
+        Get max discount price
+        """
+        return '%.2f' %(float(self.price) * 0.75)
