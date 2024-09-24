@@ -14,4 +14,4 @@ class Product(models.Model):
         """
         Get max discount price
         """
-        return '%.2f' %(float(self.price) * 0.75)
+        return float('%.2f' %(float(self.price) * 0.75))
