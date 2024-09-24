@@ -22,13 +22,20 @@ def api_home(request):
     }
     return Response(routes)
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def product(request):
     """
     Return products
     """
-    records = Product.objects.all()
-    data = {}
-    if records:
-        data = ProductSerializer(records, many=True).data
-    return Response(data)
+    match request.method:
+        case 'GET':
+            records = Product.objects.all()
+            data = {}
+            if records:
+                data = ProductSerializer(records, many=True).data
+            return Response(data)
+        case 'POST':
+            serializer = ProductSerializer(data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                return Response(serializer.data)

@@ -13,6 +13,8 @@ class ProductSerializer(ModelSerializer):
         """
         Return max discount
         """
+        if not isinstance(obj, Product):
+            return None
         return float(obj.price) - obj.max_discount_price
 
     class Meta:
