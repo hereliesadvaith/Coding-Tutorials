@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from .models.product import Product
 from .serializers.product_serializer import ProductSerializer
+from rest_framework.generics import RetrieveAPIView, CreateAPIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -39,3 +40,19 @@ def product(request):
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
                 return Response(serializer.data)
+
+
+class ProductDetailView(RetrieveAPIView):
+    """
+    Class for single product view
+    """
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+class ProductCreateView(CreateAPIView):
+    """
+    Create 
+    """
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
