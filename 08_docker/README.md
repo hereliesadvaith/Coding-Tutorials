@@ -57,7 +57,11 @@ To reflect our local code changes inside the container
 docker run -p 5173:5173 -v "$(pwd):/app" -v /app/node_modules name
 ```
 
-We can automate the image building steps using Docker Compose. We can create a docker compose file using
+We can automate the image building steps using Docker Compose. First we can create a docker compose file using
 ```bash
 docker init
+```
+This will create docker file and compose files after editing these files we can run the app by
+```bash
+docker compose up
 ```
