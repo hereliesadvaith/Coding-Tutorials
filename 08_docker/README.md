@@ -48,7 +48,16 @@ To remove a specific container
 ```bash
 docker rm container_id
 ```
+To remove an image
+```bash
+docker rmi image_id
+```
 To reflect our local code changes inside the container
 ```bash
 docker run -p 5173:5173 -v "$(pwd):/app" -v /app/node_modules name
+```
+
+We can automate the image building steps using Docker Compose. We can create a docker compose file using
+```bash
+docker init
 ```
