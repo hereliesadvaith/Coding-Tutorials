@@ -71,3 +71,13 @@ class ProductListView(generics.ListAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+class ProductListCreateView(generics.ListCreateAPIView):
+    """
+    Both list and create combined
+    GET method for list view
+    POST method for create
+    """
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
