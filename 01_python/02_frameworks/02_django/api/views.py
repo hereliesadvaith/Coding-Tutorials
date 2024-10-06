@@ -81,3 +81,20 @@ class ProductListCreateView(generics.ListCreateAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+class ProductRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    GET method to retrieve one specific product data
+    PUT method to update values
+    DELETE method to delete the product
+    """
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    
+    def perform_update(self, serializer):
+        return super().perform_update(serializer)
+    
+    def perform_destroy(self, instance):
+        return super().perform_destroy(instance)
+    

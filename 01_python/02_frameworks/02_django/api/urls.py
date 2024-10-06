@@ -6,9 +6,9 @@ from django.urls import path
 urlpatterns = [
     path('', views.api_home, name='api_home'),
     # path('product/', views.product, name='product'),
-    path('product/<int:pk>/', views.ProductDetailView.as_view(),
-        name='product_detail'     
-    ),
+    # path('product/<int:pk>/', views.ProductDetailView.as_view(),
+    #     name='product_detail'     
+    # ),
     path('product/create/', views.ProductCreateView.as_view(),
         name='product_create'
     ),
@@ -17,5 +17,8 @@ urlpatterns = [
     ),
     path('product/', views.ProductListCreateView.as_view(),
         name='product_list_create'
-    )
+    ),
+    path('product/<int:pk>/', views.ProductRetrieveUpdateDestroyView.as_view(),
+        name='product_retrieve_update_destroy'     
+    ),
 ]
