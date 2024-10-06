@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from .models.product import Product
 from .serializers.product_serializer import ProductSerializer
-from rest_framework.generics import RetrieveAPIView, CreateAPIView
+from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -42,7 +42,7 @@ def product(request):
                 return Response(serializer.data)
 
 
-class ProductDetailView(RetrieveAPIView):
+class ProductDetailView(generics.RetrieveAPIView):
     """
     Class for single product view get
     """
@@ -50,7 +50,7 @@ class ProductDetailView(RetrieveAPIView):
     serializer_class = ProductSerializer
 
 
-class ProductCreateView(CreateAPIView):
+class ProductCreateView(generics.CreateAPIView):
     """
     Create product post method
     """
@@ -63,3 +63,11 @@ class ProductCreateView(CreateAPIView):
         """
         # serializer.save(user=self.request.user)
         return super().perform_create(serializer)
+
+
+class ProductListView(generics.ListAPIView):
+    """
+    Class for list of products view
+    """
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
