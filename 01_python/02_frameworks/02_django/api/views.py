@@ -44,7 +44,7 @@ def product(request):
 
 class ProductDetailView(RetrieveAPIView):
     """
-    Class for single product view
+    Class for single product view get
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -52,7 +52,14 @@ class ProductDetailView(RetrieveAPIView):
 
 class ProductCreateView(CreateAPIView):
     """
-    Create 
+    Create product post method
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+    def perform_create(self, serializer):
+        """
+        To extend create function
+        """
+        # serializer.save(user=self.request.user)
+        return super().perform_create(serializer)
