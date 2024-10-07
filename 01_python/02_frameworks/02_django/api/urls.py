@@ -21,4 +21,10 @@ urlpatterns = [
     path('product/<int:pk>/', views.ProductRetrieveUpdateDestroyView.as_view(),
         name='product_retrieve_update_destroy'     
     ),
+    path('product/mixin/', views.ProductCreateListMixins.as_view(),
+        name='product_create_list_mixin'
+    ),
+    path('product/mixin/<int:pk>/', views.ProductRetrieveMixins.as_view(),
+         name='product_retrieve_mixin'
+    )
 ]

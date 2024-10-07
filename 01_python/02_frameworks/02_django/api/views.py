@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from .models.product import Product
 from .serializers.product_serializer import ProductSerializer
-from rest_framework import generics
+from rest_framework import generics, mixins
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -97,4 +97,29 @@ class ProductRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     
     def perform_destroy(self, instance):
         return super().perform_destroy(instance)
+
+class ProductCreateListMixins(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    generics.GenericAPIView
+):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
     
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+class ProductRetrieveMixins(
+    mixins.RetrieveModelMixin,
+    generics.GenericAPIView
+):
+    queryset = Product.objects.all()
+    serializer_class =ProductSerializer
+    lookup_field = 'pk'
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
