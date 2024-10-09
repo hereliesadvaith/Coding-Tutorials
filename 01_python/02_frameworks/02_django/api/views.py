@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from .models.product import Product
 from .serializers.product_serializer import ProductSerializer
-from rest_framework import generics, mixins
+from rest_framework import authentication, generics, mixins, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -81,6 +81,12 @@ class ProductListCreateView(generics.ListCreateAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    authentication_classes = [authentication.SessionAuthentication]
+    # Authentication for both GET and POST
+    # permission_classes = [permissions.IsAuthenticated]
+    # Authentication for POST only
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    authentication_classes = [authentication.SessionAuthentication]
 
 
 class ProductRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
