@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from .models.product import Product
+from .permissions import IsStaffEditorPermission
 from .serializers.product_serializer import ProductSerializer
 from rest_framework import authentication, generics, mixins, permissions
 from rest_framework.decorators import api_view
@@ -82,13 +83,13 @@ class ProductListCreateView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     authentication_classes = [authentication.SessionAuthentication]
-    # Authentication for both GET and POST
+    ## Authentication for both GET and POST
     # permission_classes = [permissions.IsAuthenticated]
-    # Authentication for POST only
+    ## Authentication for POST only
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     authentication_classes = [authentication.SessionAuthentication]
-    # Can still read the model data even if it's not in user or group permissions. We need custom permissions for that.
-    permission_classes = [permissions.DjangoModelPermissions]
+    ## Can still read the model data even if it's not in user or group permissions. We need custom permissions for that.
+    permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
 
 
 class ProductRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
@@ -99,7 +100,7 @@ class ProductRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [permissions.DjangoModelPermissions]
+    permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
     authentication_classes = [authentication.SessionAuthentication]
     
     def perform_update(self, serializer):
