@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from .authentication import TokenAuthentication
 from .models.product import Product
 from .permissions import IsStaffEditorPermission
 from .serializers.product_serializer import ProductSerializer
@@ -87,7 +88,10 @@ class ProductListCreateView(generics.ListCreateAPIView):
     # permission_classes = [permissions.IsAuthenticated]
     ## Authentication for POST only
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    authentication_classes = [authentication.SessionAuthentication]
+    authentication_classes = [
+        TokenAuthentication,
+        authentication.SessionAuthentication,
+    ]
     ## Can still read the model data even if it's not in user or group permissions. We need custom permissions for that.
     permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
 
@@ -101,7 +105,10 @@ class ProductRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
-    authentication_classes = [authentication.SessionAuthentication]
+    authentication_classes = [
+        TokenAuthentication,
+        authentication.SessionAuthentication
+    ]
     
     def perform_update(self, serializer):
         return super().perform_update(serializer)

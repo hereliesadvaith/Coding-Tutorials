@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from . import views
 from django.urls import path
+from rest_framework.authtoken.views import obtain_auth_token
 
 
 urlpatterns = [
+    path('auth/', obtain_auth_token, name='obtain_auth_token'),
     path('', views.api_home, name='api_home'),
     # path('product/', views.product, name='product'),
     # path('product/<int:pk>/', views.ProductDetailView.as_view(),
