@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from .authentication import TokenAuthentication
+from .mixins import PermissionMixin
 from .models.product import Product
 from .permissions import IsStaffEditorPermission
 from .serializers.product_serializer import ProductSerializer
-from rest_framework import authentication, generics, mixins, permissions
+from rest_framework import generics, mixins, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -75,7 +75,9 @@ class ProductListView(generics.ListAPIView):
     serializer_class = ProductSerializer
 
 
-class ProductListCreateView(generics.ListCreateAPIView):
+class ProductListCreateView(
+        PermissionMixin, generics.ListCreateAPIView
+    ):
     """
     Both list and create combined
     GET method for list view
@@ -83,7 +85,6 @@ class ProductListCreateView(generics.ListCreateAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
 
 
 class ProductRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
