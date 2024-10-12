@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from ..models.order import Order
 from rest_framework.reverse import reverse
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 
 
-class OrderSerializer(ModelSerializer):
+class OrderSerializer(serializers.ModelSerializer):
     """
     Serializer for product
     """
@@ -12,4 +12,7 @@ class OrderSerializer(ModelSerializer):
         model = Order
         fields = [
             'name',
+            'partner'
         ]
+    
+    partner = serializers.CharField(source='user.username', read_only=True)
