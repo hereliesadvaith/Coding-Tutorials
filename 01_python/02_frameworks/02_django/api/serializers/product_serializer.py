@@ -1,16 +1,28 @@
 # -*- coding: utf-8 -*-
 from ..models.product import Product
 from rest_framework.reverse import reverse
-from rest_framework.serializers import ModelSerializer, SerializerMethodField, EmailField
+from rest_framework.serializers import (
+    CharField,
+    EmailField,
+    ModelSerializer,
+    SerializerMethodField,
+    ValidationError
+)
+from rest_framework.validators import UniqueValidator
 
 
 class ProductSerializer(ModelSerializer):
     """
     Serializer for product
     """
+    name = CharField(validators=[
+        UniqueValidator(queryset=Product.objects.all())
+    ])
     discounted_price = SerializerMethodField(read_only=True)
     url = SerializerMethodField(read_only=True)
     email = EmailField(write_only=True)
+    # Can also use foreign key as source
+    title = CharField(source='name', read_only=True)
 
     def get_discounted_price(self, obj):
         """
@@ -31,6 +43,7 @@ class ProductSerializer(ModelSerializer):
         fields = [
             'url',
             'name',
+            'title',
             'email',
             'price',
             'max_discount_price',
@@ -42,6 +55,8 @@ class ProductSerializer(ModelSerializer):
         email = validated_data.pop('email')
         return super().create(validated_data)
 
-    def validate_price(self, value):
-        # Check the value is valid or not before save
-        return value
+    # def validate_name(self, value):
+    #     product = Product.objects.filter(name__exact=value)
+    #     if product.exists():
+    #         raise ValidationError(f'Product {value} already exists')
+    #     return value
