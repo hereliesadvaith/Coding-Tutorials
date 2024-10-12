@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 from .mixins import PermissionMixin
+from .models.order import Order
 from .models.product import Product
 from .permissions import IsStaffEditorPermission
+from .serializers.order_serializer import OrderSerializer
 from .serializers.product_serializer import ProductSerializer
 from rest_framework import generics, mixins, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import viewsets
 
 
 @api_view(['GET'])
@@ -128,3 +131,19 @@ class ProductRetrieveMixins(
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
+
+
+class OrderViewSet(
+        PermissionMixin, viewsets.ModelViewSet
+    ):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super().get_queryset(*args, **kwargs)
+        qs.filter(user=self.request.user)
+        return qs
+    
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+        return super().perform_create(serializer)

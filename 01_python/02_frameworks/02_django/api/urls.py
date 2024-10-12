@@ -2,6 +2,7 @@
 from . import views
 from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework.routers import DefaultRouter
 
 
 urlpatterns = [
@@ -30,3 +31,8 @@ urlpatterns = [
          name='product_retrieve_mixin'
     )
 ]
+
+router = DefaultRouter()
+router.register('order', views.OrderViewSet, 'order')
+
+urlpatterns += router.urls
