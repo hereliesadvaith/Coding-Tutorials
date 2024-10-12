@@ -10,6 +10,7 @@ class ProductSerializer(ModelSerializer):
     """
     discounted_price = SerializerMethodField(read_only=True)
     url = SerializerMethodField(read_only=True)
+    email = EmailField(write_only=True)
 
     def get_discounted_price(self, obj):
         """
@@ -30,6 +31,7 @@ class ProductSerializer(ModelSerializer):
         fields = [
             'url',
             'name',
+            'email',
             'price',
             'max_discount_price',
             'discounted_price',
@@ -37,6 +39,7 @@ class ProductSerializer(ModelSerializer):
     
     def create(self, validated_data):
         # Can send an email on create
+        email = validated_data.pop('email')
         return super().create(validated_data)
 
     def validate_price(self, value):
