@@ -142,7 +142,9 @@ class OrderViewSet(
     def get_queryset(self, *args, **kwargs):
         qs = super().get_queryset(*args, **kwargs)
         qs.filter(user=self.request.user)
-        return qs
+        query = self.request.GET.get('query')
+        result = qs.search(query=query, user=self.request.user)
+        return result
     
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
