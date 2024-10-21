@@ -1,0 +1,5 @@
+services:
+  flask:
+    image: coding_tutorials/flask:0.1.0
+    ports:
+      - 9000:8000
