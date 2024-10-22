@@ -1,5 +1,8 @@
 services:
   flask:
-    image: coding_tutorials/flask:0.1.0
+    image: coding_tutorials/flask:latest
+    build:
+      context: flask
+      dockerfile: Dockerfile
     ports:
       - 9000:8000

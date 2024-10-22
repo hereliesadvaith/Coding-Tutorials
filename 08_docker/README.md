@@ -65,3 +65,7 @@ This will create docker file and compose files after editing these files we can 
 ```bash
 docker compose up
 ```
+To apply the local changes add build context in compose file and run
+```bash
+docker compose up --build
+```

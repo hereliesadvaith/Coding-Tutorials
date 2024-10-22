@@ -8,5 +8,5 @@ app = Flask(__name__)
 def about():
     version = '0.1.0'
     return {
-        'version': version
+        'app_version': version
     }, 200
