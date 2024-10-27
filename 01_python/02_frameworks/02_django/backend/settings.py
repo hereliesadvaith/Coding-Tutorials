@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'graphene_django',
 
     'api',
+    'customer',
 
 ]
 
@@ -103,7 +104,7 @@ STATIC_URL = '/static/'
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#REST Framework
+# REST Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'api.authentication.TokenAuthentication',
@@ -114,4 +115,9 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 2,
+}
+
+# GraphQL
+GRAPHENE = {
+    'SCHEMA': 'customer.schema.schema'
 }
