@@ -1,0 +1,7 @@
+services:
+  backend:
+    image: coding_tutorials/django_react:latest
+    build:
+      context: backend
+    ports:
+      - 8000:8000
