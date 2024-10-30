@@ -1,7 +1,13 @@
 services:
   backend:
-    image: coding_tutorials/django_react:latest
+    image: django_react/backend:latest
     build:
       context: backend
     ports:
       - 8000:8000
+  frontend:
+    image: django_react/frontend:latest
+    build:
+      context: frontend
+    ports:
+      - 5173:5173
