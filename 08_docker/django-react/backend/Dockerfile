@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-ENTRYPOINT [ "sh", "/backend/entrypoint.sh" ]
+ENTRYPOINT [ "sh", "/app/entrypoint.sh" ]
