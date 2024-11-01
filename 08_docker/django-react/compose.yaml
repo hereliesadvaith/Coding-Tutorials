@@ -3,13 +3,30 @@ services:
     image: django_react/backend:latest
     build:
       context: backend
-    ports:
-      - 8000:8000
+    volumes:
+      - static_volume:/app/staticfiles
   frontend:
     image: django_react/frontend:latest
     build:
       context: frontend
-    ports:
-      - 5173:5173
     depends_on:
       - backend
+  nginx:
+    image: nginx:1.26.1-alpine
+    ports:
+      - 8080:8080
+    configs:
+      - source: nginx_config
+        target: /etc/nginx/nginx.conf
+    volumes:
+      - static_volume:/app/staticfiles
+    depends_on:
+      - backend
+      - frontend
+    
+configs:
+  nginx_config:
+    file: ./nginx.conf
+
+volumes:
+  static_volume:
