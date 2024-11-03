@@ -9,3 +9,21 @@ services:
       - ./frontend:/app
       - /app/node_modules
     command: ["npm", "run", "dev"]
+  backend:
+    image: odoo:18.0
+    ports:
+      - "127.0.0.1:8069:8069"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    volumes:
+      - data:/var/lib/odoo
+  postgres:
+    image: postgres:14
+    env_file: .env
+    volumes:
+      - db:/var/lib/postgresql/data/pgdata
+volumes:
+  data:
+  db:
