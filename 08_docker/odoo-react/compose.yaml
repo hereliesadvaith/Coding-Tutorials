@@ -5,6 +5,8 @@ services:
       context: frontend
     ports:
       - 5173:5173
+    depends_on:
+      - backend
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -18,9 +20,11 @@ services:
     depends_on:
       - postgres
     volumes:
+      - ./backend/addons:/mnt/extra-addons
       - data:/var/lib/odoo
+    command: ["odoo", "--dev=reload", "--db-filter=^odoo181$", "--addons-path=/mnt/extra-addons"]
   postgres:
-    image: postgres:14
+    image: postgres:17
     env_file: .env
     volumes:
       - db:/var/lib/postgresql/data/pgdata
