@@ -28,6 +28,18 @@ services:
     env_file: .env
     volumes:
       - db:/var/lib/postgresql/data/pgdata
+  nginx:
+    image: nginx:1.26.1-alpine
+    ports:
+      - 8080:8080
+    configs:
+      - source: nginx_config
+        target: /etc/nginx/nginx.conf
+    depends_on:
+      - backend
+configs:
+  nginx_config:
+    file: ./nginx.conf
 volumes:
   data:
   db:

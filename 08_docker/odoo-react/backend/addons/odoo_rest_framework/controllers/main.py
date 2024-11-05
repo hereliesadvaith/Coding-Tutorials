@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from odoo.http import Controller, request, route
 import json
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class RestFramework(Controller):
@@ -14,7 +17,9 @@ class RestFramework(Controller):
         """
         Rest Framework
         """
+        auth = request.httprequest.headers.get('Authorization')
+        _logger.info(f'Response auth {auth}')
         data = json.dumps({
-            'id': 200
+            'id': 201
         })
         return request.make_response(data, status=200)
